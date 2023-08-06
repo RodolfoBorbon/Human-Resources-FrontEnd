@@ -9,6 +9,7 @@
   "author": "Rodolfo Borbon",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "oracledb": "^6.0.3"
   }

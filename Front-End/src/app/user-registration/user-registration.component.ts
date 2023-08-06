@@ -33,7 +33,7 @@ registerUser(form: NgForm) {
     error: (err) => {
         console.error(err);
         this.snackBar.open(err.error.message || 'An error occurred', '', {
-            duration: 7000,
+            duration: 9000,
         });
     }
 })}}

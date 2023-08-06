@@ -30,6 +30,8 @@
           type="email"
           id="email"
           name="email"
+          required
+          [(ngModel)]="newUser.email"
           pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
           class="form-control"
           required

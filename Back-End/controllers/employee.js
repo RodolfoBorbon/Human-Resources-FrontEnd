@@ -66,23 +66,16 @@ exports.updateEmployee = async (req, res) => {
                      SALARY = :SALARY 
                  WHERE EMPLOYEE_ID = :EMPLOYEE_ID`;
     
-                 try {
-                    const result = await dbModule.connection().execute(sql, { EMPLOYEE_ID: req.params.EMPLOYEE_ID });
-                    res.send({ status: true, message: "Employee Deleted Successfully" });
-                } catch (err) {
-                    console.error(err);
-            
-                    // Check for ORA-02292 error
-                    if (err.code === 'ORA-02292') {
-                        res.send({
-                            status: false,
-                            message: "Cannot delete the employee as they are linked to another record in the system."
-                        });
-                    } else {
-                        res.send({ status: false, message: "Employee Deletion Failed" });
-                    }
-                }
-            };
+      try {
+          const result = await dbModule.connection().execute(sql, details);
+          res.send({ status: true, message: "Employee Updated successfully" });
+        } catch (err) {
+            if (err.code === 'ORA-20001') {
+                res.status(400).json({ message: 'The salary is outside the acceptable range for this job.' });
+            } else {
+                res.status(500).json({ message: 'Internal server error.' });
+            }
+        }};
 
 // Controller for deleting an employee record by employee_id
 exports.deleteEmployee = async (req, res) => {
@@ -90,10 +83,25 @@ exports.deleteEmployee = async (req, res) => {
 
     try {
         const result = await dbModule.connection().execute(sql, { EMPLOYEE_ID: req.params.EMPLOYEE_ID });
-        res.send({ status: true, message: "Employee Deleted Successfully" });
+        
+        // Assuming that you're using the result object to check if the deletion was successful
+        if (result.rowsAffected && result.rowsAffected > 0) {
+            res.send({ status: true, message: "Employee Deleted Successfully" });
+        } else {
+            res.send({ status: false, message: "Employee Deletion Failed: No such employee exists." });
+        }
     } catch (err) {
         console.error(err);
-        res.send({ status: false, message: "Employee Deletion Failed" });
+
+        // Check for ORA-02292 error
+        if (err.code === 'ORA-02292') {
+            res.send({
+                status: false,
+                message: "Cannot delete the employee as they are linked to another record in the system."
+            });
+        } else {
+            res.send({ status: false, message: "Employee Deletion Failed" });
+        }
     }
 };
 

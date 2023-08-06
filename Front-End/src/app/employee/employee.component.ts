@@ -167,16 +167,21 @@ updateEmployee()
   }
 
   //Delete employee
-  deleteEmployee(data: any)
+  deleteEmployee(data: any) 
   {
-    this.http.delete("http://localhost:8080/employee/delete"+ "/"+ data.EMPLOYEE_ID).subscribe((resultData: any)=>
-    {
+    const isConfirmed = window.confirm('Are you sure you want to delete this employee?');  // Confirm the deletion
+    if (isConfirmed) {
+      this.http.delete("http://localhost:8080/employee/delete" + "/" + data.EMPLOYEE_ID).subscribe((resultData: any) => {
         console.log(resultData);
-        alert("Employee record Deleted")
+        alert("Employee record Deleted");
         this.resetForm();
         this.getAllEmployee();
-    });
+      });
+    } else {
+      console.log('Deletion cancelled by user.');
+    }
   }
+  
 
     //View all Jobs
     getAllJobs()

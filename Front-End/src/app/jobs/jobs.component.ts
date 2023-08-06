@@ -116,13 +116,18 @@ updateEmployee()
   //Delete a job
   deleteJob(data: any)
   {
+    const isConfirmed = window.confirm('Are you sure you want to delete this job?');  // Confirm the deletion
+    if (isConfirmed) {
     this.http.delete("http://localhost:8080/job/delete"+ "/"+ data.JOB_ID).subscribe((resultData: any)=>
     {
         console.log(resultData);
         alert("Job record Deleted")
         this.getAllJob();
     });
+  } else {
+    console.log('Deletion cancelled by user.');
   }
+}
 
     // Search a job
   searchJob() {

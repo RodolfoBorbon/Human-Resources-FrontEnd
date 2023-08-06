@@ -121,13 +121,17 @@ updateDepartment()
   //Delete a department
   deleteDepartment(data: any)
   {
+    const isConfirmed = window.confirm('Are you sure you want to delete this department?');  // Confirm the deletion
+    if (isConfirmed) {
     this.http.delete("http://localhost:8080/department/delete"+ "/"+ data.DEPARTMENT_ID).subscribe((resultData: any)=>
     {
         console.log(resultData);
         alert("Department record Deleted")
         this.getAllDepartment();
     });
+    console.log('Deletion cancelled by user.');
   }
+}
 
     // Search a department
   searchDepartment() {

@@ -1,1 +1,39 @@
-<p>login works!</p>
+<!-- app/login/login.component.html -->
+<div class="container">
+  <h1>Login</h1>
+  <!-- Display error message if it's not empty -->
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <form (ngSubmit)="loginUser()" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        required
+        [(ngModel)]="user.username"
+        name="username"
+        class="form-control"
+      />
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        required
+        [(ngModel)]="user.password"
+        name="password"
+        class="form-control"
+      />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Sign In</button>
+  </form>
+  <br />
+  <br />
+  <p>
+    Don't have an account? <a routerLink="/user-registration">Register here</a>
+  </p>
+</div>

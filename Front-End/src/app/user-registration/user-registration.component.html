@@ -1,1 +1,45 @@
-<p>user-registration works!</p>
+<!-- user-registration/user-registration.component.html -->
+
+<div class="container">
+  <h1>Registration</h1>
+  <form (ngSubmit)="registerUser(registrationForm)" #registrationForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        required
+        [(ngModel)]="newUser.username"
+        name="username"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        required
+        [(ngModel)]="newUser.password"
+        name="password"
+        class="form-control"
+      />
+      <div class="form-group email">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+          class="form-control"
+          required
+        />
+        <div class="error-message">
+          Please use the following format: example@example.com
+        </div>
+      </div>
+      <br />
+      <button type="submit" class="btn btn-primary">Register</button>
+    </div>
+  </form>
+</div>

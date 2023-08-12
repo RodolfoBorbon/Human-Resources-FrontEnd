@@ -1,1 +1,132 @@
-<p>home works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Summaries</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-light py-5">
+    <div class="container">
+      <div class="mb-5 text-center">
+        <h1 class="display-6">HR Management Application</h1>
+        <hr />
+        <p class="lead">Application Structure Overview</p>
+      </div>
+
+      <!-- Departments Page Summary -->
+      <div class="card mb-4">
+        <div class="card-header bg-primary text-white">Departments Page</div>
+        <div class="card-body">
+          <p>
+            The Departments Page is central to the administration of department
+            records within an organization. The page starts with a "Department
+            Registration Form" that allows the creation or updating of
+            department data, like the department's name, associated manager, and
+            location. Users are provided with dropdown selections and input
+            fields, with validation ensuring all required data is entered. Below
+            the form, a "Search Area" empowers users to locate specific
+            department records using criteria like department id or name.
+            Lastly, the "Department Dashboard" section displays all departments
+            in a structured table format, where each entry is accompanied by
+            options to update or delete that specific record.
+          </p>
+        </div>
+      </div>
+
+      <!-- Employees Page Summary -->
+      <div class="card mb-4">
+        <div class="card-header bg-secondary text-white">Employees Page</div>
+        <div class="card-body">
+          <p>
+            The Employees Page is dedicated to managing individual employee
+            records within the organization. At the top, there's likely an
+            "Employee Registration Form" that captures essential details such as
+            employee name, designation, department, and contact information.
+            Mandatory fields are probably highlighted, ensuring all crucial data
+            is entered before submission. A subsequent "Search Area" would
+            permit users to pinpoint specific employees using relevant criteria
+            like employee ID, name, or department. The main body would showcase
+            an "Employee Dashboard", a table listing all employees, where each
+            record is possibly accompanied by options to update, view details,
+            or delete the employee entry.
+          </p>
+        </div>
+      </div>
+
+      <!-- Jobs Page Summary -->
+      <div class="card mb-4">
+        <div class="card-header bg-success text-white">Jobs Page</div>
+        <div class="card-body">
+          <p>
+            The Jobs Page is tailored for job role management within the
+            organization. It probably commences with a "Job Registration Form"
+            that lets administrators define or revise job titles, descriptions,
+            minimum and maximum salary scales, and other pertinent job
+            attributes. Required fields would be emphasized to maintain data
+            integrity. An intermediary "Search Area" facilitates users in
+            locating specific job roles using appropriate search terms, such as
+            job title or description. The primary section, the "Job Dashboard",
+            would present all job roles in a detailed table. Each listed job
+            role might be paired with options to modify, delve deeper, or
+            eradicate the specific job entry.
+          </p>
+        </div>
+      </div>
+
+      <!-- User Authentication Summary -->
+      <div class="card mb-4">
+        <div class="card-header bg-info text-white">User Authentication</div>
+        <div class="card-body">
+          <p>
+            The User Authentication module offers secure management of user
+            credentials. Leveraging bcrypt, passwords are hashed before storage,
+            ensuring their confidentiality. On registration, the module checks
+            for unique usernames or emails, and upon a constraint violation,
+            provides a user-friendly message. During login, the module validates
+            user credentials by comparing the provided password with the stored
+            hashed version. Successful matches lead to a successful login
+            response, while mismatches trigger an error message. Lastly, the
+            module supports logout functionality to securely end user sessions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Team Members Section -->
+    <div class="team-section mt-5">
+      <h2 class="text-center mb-4">Meet the Team</h2>
+      <p class="lead text-center mb-5">
+        Behind the HR Management Application is a dedicated team of
+        professionals. Their relentless effort, expertise, and commitment have
+        played an instrumental role in shaping the application.
+      </p>
+
+      <div class="team-members d-flex justify-content-center">
+        <div class="team-member mr-4">
+          <h5>Rodolfo Borbon</h5>
+          <p>Lead Software Engineer</p>
+        </div>
+        <div class="team-member mr-4">
+          <h5>Maha Nasir</h5>
+          <p>UI/UX Designer</p>
+        </div>
+        <div class="team-member mr-4">
+          <h5>Joshua Isaac</h5>
+          <p>Database Architect</p>
+        </div>
+        <div class="team-member mr-4">
+          <h5>Shahzaib Mansoor</h5>
+          <p>QA Engineer</p>
+        </div>
+        <div class="team-member">
+          <h5>Prosper Alabi</h5>
+          <p>Project Manager</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

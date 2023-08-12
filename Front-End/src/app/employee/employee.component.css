@@ -201,20 +201,28 @@
 .table-employees thead h1 {
     text-align: center;
     font-size: 1.5em; 
-    margin: 1em 0;     
-}
-
-.table-employees th, 
-.table-employees td {
-    text-align: center; 
-    padding: 0.5em 0.75em; 
-    border: 1px solid #ddd; 
-    box-sizing: border-box; 
-}
-
-.table-employees tr:nth-child(even) {
-    background-color: #f2f2f2; 
-}
+    margin: 1em 0;
+}     
+    .table-employees th {
+        text-align: center;
+        padding: 0.5em 0.75em;
+        border: 1px solid #ffffff;
+        box-sizing: border-box;
+        background-color: #c3c8c8; /* This is the color for the column headers */
+        color: #0c0c0c; /* This sets the text color to white for better visibility on the blue background */
+    }
+    
+    .table-employees th, 
+    .table-employees td {
+        text-align: center; 
+        padding: 0.5em 0.75em; 
+        border: 1px solid #d0cece; 
+        box-sizing: border-box; 
+    }
+    
+    .table-employees tr:nth-child(even) {
+        background-color: #ffffff; 
+    }
 
 .btn {
     margin: 0.5em;      

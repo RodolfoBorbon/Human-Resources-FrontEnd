@@ -110,12 +110,6 @@ createEmployee()
    this.PHONE_NUMBER = data.PHONE_NUMBER;
    this.SALARY = data.SALARY;
    this.EMPLOYEE_ID = data.EMPLOYEE_ID;
-   this.FIRST_NAME = data.FIRST_NAME;
-   this.LAST_NAME = data.LAST_NAME;
-  this.JOB_ID = data.JOB_ID;
-  this.MANAGER_ID = data.MANAGER_ID;
-  this.DEPARTMENT_ID = data.DEPARTMENT_ID;
-  this.COMMISSION_PCT = data.COMMISSION_PCT;
   }
 
   //Update a record
@@ -173,29 +167,16 @@ updateEmployee()
   }
 
   //Delete employee
-  deleteEmployee(data: any) {
-    const isConfirmed = window.confirm('Are you sure you want to delete this employee?'); // Confirm the deletion
-    if (isConfirmed) {
-        this.http.delete("http://localhost:8080/employee/delete" + "/" + data.EMPLOYEE_ID).subscribe({
-            next: (resultData: any) => {
-                console.log(resultData);
-                if (resultData.status) {
-                    alert(resultData.message);  // Display success message from backend
-                } else {
-                    alert(resultData.message);  // Display error message from backend
-                }
-                this.resetForm();
-                this.getAllEmployee();
-            },
-            error: (error) => {
-                console.error('Error:', error);
-                alert('An error occurred while deleting the employee. Please try again.');
-            }
-        });
-    } else {
-        console.log('Deletion cancelled by user.');
-    }
-}
+  deleteEmployee(data: any)
+  {
+    this.http.delete("http://localhost:8080/employee/delete"+ "/"+ data.EMPLOYEE_ID).subscribe((resultData: any)=>
+    {
+        console.log(resultData);
+        alert("Employee record Deleted")
+        this.resetForm();
+        this.getAllEmployee();
+    });
+  }
 
     //View all Jobs
     getAllJobs()

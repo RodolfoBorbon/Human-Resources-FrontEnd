@@ -75,11 +75,26 @@ exports.deleteJob = async (req, res) => {
 
     try {
         const result = await dbModule.connection().execute(sql, { JOB_ID: req.params.JOB_ID });
+       
+    // Check if the deletion was successful
+    if (result.rowsAffected && result.rowsAffected > 0) {
         res.send({ status: true, message: "Job Deleted Successfully" });
-    } catch (err) {
-        console.error(err);
+    } else {
+        res.send({ status: false, message: "Job Deletion Failed: No such job exists." });
+    }
+} catch (err) {
+    console.error(err);
+
+    // Check for ORA-02292 error
+    if (err.code === 'ORA-02292') {
+        res.send({
+            status: false,
+            message: "Cannot delete the Job as they are linked to another record in the system."
+        });
+    } else {
         res.send({ status: false, message: "Job Deletion Failed" });
     }
+}
 };
 
 // Controller for searching a job record by job_id or job_title

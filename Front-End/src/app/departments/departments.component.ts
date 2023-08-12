@@ -123,15 +123,26 @@ updateDepartment()
   {
     const isConfirmed = window.confirm('Are you sure you want to delete this department?');  // Confirm the deletion
     if (isConfirmed) {
-    this.http.delete("http://localhost:8080/department/delete"+ "/"+ data.DEPARTMENT_ID).subscribe((resultData: any)=>
-    {
+    this.http.delete("http://localhost:8080/department/delete"+ "/"+ data.DEPARTMENT_ID).subscribe({
+      next: (resultData: any) => {
         console.log(resultData);
-        alert("Department record Deleted")
+        if (resultData.status) {
+            alert(resultData.message);  // Display success message from backend
+        } else {
+            alert(resultData.message);  // Display error message from backend
+        }
+        this.resetForm();
         this.getAllDepartment();
-    });
-    console.log('Deletion cancelled by user.');
+    },
+    error: (error) => {
+        console.error('Error:', error);
+        alert('An error occurred while deleting the department. Please try again.');
+    }
+  });
+  } else {
+  console.log('Deletion cancelled by user.');
   }
-}
+  }
 
     // Search a department
   searchDepartment() {

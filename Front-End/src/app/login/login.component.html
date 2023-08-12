@@ -1,11 +1,12 @@
 <!-- app/login/login.component.html -->
 <div class="container">
   <h1>Login</h1>
+  <br />
   <!-- Display error message if it's not empty -->
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
   <form (ngSubmit)="loginUser()" #loginForm="ngForm">
     <div class="form-group">
-      <label for="username">Username:</label>
+      <label for="username">Username</label>
       <input
         type="text"
         id="username"
@@ -16,9 +17,8 @@
       />
     </div>
     <br />
-    <br />
     <div class="form-group">
-      <label for="password">Password:</label>
+      <label for="password">Password</label>
       <input
         type="password"
         id="password"

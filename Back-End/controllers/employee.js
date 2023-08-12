@@ -84,7 +84,7 @@ exports.deleteEmployee = async (req, res) => {
     try {
         const result = await dbModule.connection().execute(sql, { EMPLOYEE_ID: req.params.EMPLOYEE_ID });
         
-        // Assuming that you're using the result object to check if the deletion was successful
+        // Check if the deletion was successful
         if (result.rowsAffected && result.rowsAffected > 0) {
             res.send({ status: true, message: "Employee Deleted Successfully" });
         } else {

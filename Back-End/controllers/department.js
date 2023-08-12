@@ -16,14 +16,29 @@ exports.addDepartment = async (req, res, next) => {
                       :LOCATION_ID); 
                  END;`;
     
-      try {
-        const result = await dbModule.connection().execute(sql, details);
-        res.send({ status: true, message: "Department created successfully" });
-      } catch (err) {
-        console.error(err);
-        res.send({ status: false, message: "Department creation failed" });
-      }
-    };
+                 try {
+                    const result = await dbModule.connection().execute(sql, { EMPLOYEE_ID: req.params.EMPLOYEE_ID });
+                    
+                    // Check if the deletion was successful
+                    if (result.rowsAffected && result.rowsAffected > 0) {
+                        res.send({ status: true, message: "Department Deleted Successfully" });
+                    } else {
+                        res.send({ status: false, message: "Department Deletion Failed: No such employee exists." });
+                    }
+                } catch (err) {
+                    console.error(err);
+            
+                    // Check for ORA-02292 error
+                    if (err.code === 'ORA-02292') {
+                        res.send({
+                            status: false,
+                            message: "Cannot delete the department as they are linked to another record in the system."
+                        });
+                    } else {
+                        res.send({ status: false, message: "Department Deletion Failed" });
+                    }
+                }
+            };
 
 
 //Controller for viewing all records from hr_departments table
@@ -76,11 +91,25 @@ exports.getAllDepartments = async (req, res, next) => {
 
     try {
         const result = await dbModule.connection().execute(sql, { DEPARTMENT_ID: req.params.DEPARTMENT_ID });
-        res.send({ status: true, message: "Department Deleted Successfully" });
-    } catch (err) {
-        console.error(err);
+       // Check if the deletion was successful
+    if (result.rowsAffected && result.rowsAffected > 0) {
+        res.send({ status: true, message: "Job Deleted Successfully" });
+    } else {
+        res.send({ status: false, message: "Job Deletion Failed: No such job exists." });
+    }
+} catch (err) {
+    console.error(err);
+
+    // Check for ORA-02292 error
+    if (err.code === 'ORA-02292') {
+        res.send({
+            status: false,
+            message: "Cannot delete the department as they are linked to another record in the system."
+        });
+    } else {
         res.send({ status: false, message: "Department Deletion Failed" });
     }
+}
 };
 
 // Controller for getting a department record by department_id or department_name 

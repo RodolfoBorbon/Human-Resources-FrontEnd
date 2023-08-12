@@ -1,165 +1,166 @@
 <!-- app/departments/departments.component.html -->
 
 <!-- Department Form -->
-<div class="container mt-4">
+<div class="container department-form">
   <h1>Department Registration</h1>
-  <form>
-    <div class="form-group">
-      <label>Department name</label>
-      <input
-        type="text"
-        [(ngModel)]="DEPARTMENT_NAME"
-        [ngModelOptions]="{ standalone: true }"
-        class="form-control departmentName"
-        id="DEPARTMENT_NAME"
-        placeholder="Enter Department name"
-        required
-        #departmentName="ngModel"
-        (focus)="departmentNameTouched = true"
-      />
-      <div
-        *ngIf="departmentNameTouched && departmentName.errors?.['required']"
-        class="error-message"
-      >
-        Department name is required.
-      </div>
-    </div>
+  <div class="flex-container">
+    <div class="Registration-Form flex-col">
+      <form>
+        <div class="flex-row">
+          <!-- First column -->
+          <div class="flex-col">
+            <div class="form-group">
+              <label>Department name</label>
+              <input
+                type="text"
+                [(ngModel)]="DEPARTMENT_NAME"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control departmentName"
+                id="DEPARTMENT_NAME"
+                placeholder="Enter Department name"
+                required
+                #departmentName="ngModel"
+                (focus)="departmentNameTouched = true"
+              />
+              <div
+                *ngIf="departmentNameTouched && departmentName.errors?.['required']"
+                class="error-message"
+              >
+                Department name is required.
+              </div>
+            </div>
 
-    <div class="form-group">
-      <label>Manager</label>
-      <select
-        [(ngModel)]="MANAGER_ID"
-        [ngModelOptions]="{ standalone: true }"
-        class="form-control managerId"
-        id="MANAGER_ID"
-      >
-        <option
-          *ngFor="let manager of EmployeeArray"
-          [value]="manager.EMPLOYEE_ID"
-        >
-          {{ manager.EMPLOYEE_ID }}
-          {{ manager.LAST_NAME }}
-          {{ manager.FIRST_NAME }}
-        </option>
-      </select>
-    </div>
+            <div class="form-group">
+              <label>Manager</label>
+              <select
+                [(ngModel)]="MANAGER_ID"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control managerId"
+                id="MANAGER_ID"
+              >
+                <option
+                  *ngFor="let manager of EmployeeArray"
+                  [value]="manager.EMPLOYEE_ID"
+                >
+                  {{ manager.EMPLOYEE_ID }}
+                  {{ manager.LAST_NAME }}
+                  {{ manager.FIRST_NAME }}
+                </option>
+              </select>
+            </div>
 
-    <div class="flex-col">
-      <div class="form-group">
-        <label>Location</label>
-        <select
-          [(ngModel)]="LOCATION_ID"
-          [ngModelOptions]="{ standalone: true }"
-          class="form-control locationId"
-          id="LOCATION_ID"
-          required
-          #locationId="ngModel"
-          (focus)="locationIdTouched = true"
-        >
-          <option
-            *ngFor="let location of LocationArray"
-            [value]="location.LOCATION_ID"
-          >
-            {{ location.LOCATION_ID }}
-            {{ location.STREET_ADDRESS }}
-            {{ location.POSTAL_CODE }}
-            {{ location.CITY }}
-            {{ location.COUNTRY }}
-          </option>
-        </select>
-        <div
-          *ngIf="locationIdTouched && locationId.errors?.['required']"
-          class="error-message"
-        >
-          Location is required
+            <div class="form-group">
+              <label>Location</label>
+              <select
+                [(ngModel)]="LOCATION_ID"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control locationId"
+                id="LOCATION_ID"
+                required
+                #locationId="ngModel"
+                (focus)="locationIdTouched = true"
+              >
+                <option
+                  *ngFor="let location of LocationArray"
+                  [value]="location.LOCATION_ID"
+                >
+                  {{ location.LOCATION_ID }}
+                  {{ location.STREET_ADDRESS }}
+                  {{ location.POSTAL_CODE }}
+                  {{ location.CITY }}
+                  {{ location.COUNTRY }}
+                </option>
+              </select>
+              <div
+                *ngIf="locationIdTouched && locationId.errors?.['required']"
+                class="error-message"
+              >
+                Location is required
+              </div>
+            </div>
+
+            <!-- save button -->
+            <button type="submit" class="btn btn-save" (click)="save()">
+              Save
+            </button>
+            <button type="reset" class="btn btn-cancel" (click)="resetForm()">
+              Cancel
+            </button>
+          </div>
         </div>
-      </div>
-
-      <!-- save button -->
-      <button type="submit" class="btn btn-primary save" (click)="save()">
-        Save
-      </button>
-      <!-- cancel button -->
-      <button
-        type="reset"
-        class="btn btn-primary resetform"
-        (click)="resetForm()"
-      >
-        Cancel
-      </button>
+      </form>
     </div>
-    <br />
-    <br />
+  </div>
+</div>
+<br /><br />
 
-    <!-- Search Area -->
-    <div class="form-group search">
-      <label>Search</label>
-      <input
-        type="text"
-        [(ngModel)]="SearchInput"
-        [ngModelOptions]="{ standalone: true }"
-        class="form-control input-search"
-        id="SearchInput"
-        placeholder="Search by department_id or department_name"
-      />
-    </div>
-    <button
-      type="button"
-      class="btn btn-primary search"
-      (click)="searchDepartment()"
-    >
-      Search
-    </button>
-    <button
-      type="button"
-      class="btn btn-secondary cancel-search"
-      (click)="getAllDepartment()"
-    >
-      Cancel
-    </button>
-    <br />
-    <br />
-    <br />
-    <!-- ----------------------------Department Dashboard------------------------------------- -->
+<!-- Search Area -->
+<div class="container search">
+  <div class="form-group-search">
+    <label></label>
+    <input
+      type="text"
+      [(ngModel)]="SearchInput"
+      [ngModelOptions]="{ standalone: true }"
+      class="form-control input-search"
+      id="SearchInput"
+      placeholder="Search by department_id or department_name"
+    />
+  </div>
+  <button
+    type="button"
+    class="btn btn-searchButton"
+    (click)="searchDepartment()"
+  >
+    Search
+  </button>
+  <button
+    type="button"
+    class="btn btn-resetSearch"
+    (click)="getAllDepartment()"
+  >
+    Cancel
+  </button>
+</div>
+<br />
+<br />
+<br />
+<!-- ----------------------------Department Dashboard------------------------------------- -->
 
-    <div class="container mt-4">
-      <div class="Employee dashboard">
-        <h1>Department Dashboard</h1>
-        <table class="table-departments">
-          <thead>
-            <h1 *ngIf="!isResultLoaded">Loading.......</h1>
-            <tr>
-              <th scope="col">DEPARTMENT_ID</th>
-              <th scope="col">DEPARTMENT_NAME</th>
-              <th scope="col">MANAGER_ID</th>
-              <th scope="col">LOCATION_ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let DepartmentItem of DepartmentArray">
-              <td>{{ DepartmentItem.DEPARTMENT_ID }}</td>
-              <td>{{ DepartmentItem.DEPARTMENT_NAME }}</td>
-              <td>{{ DepartmentItem.DEPARTMENT_NAME }}</td>
-              <td>{{ DepartmentItem.DEPARTMENT_NAME }}</td>
+<div class="table-container">
+  <h1>Department Dashboard</h1>
+  <table class="table-departments">
+    <thead>
+      <h1 *ngIf="!isResultLoaded">Loading.......</h1>
+      <tr>
+        <th scope="col">DEPARTMENT_ID</th>
+        <th scope="col">DEPARTMENT_NAME</th>
+        <th scope="col">MANAGER_ID</th>
+        <th scope="col">LOCATION_ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let DepartmentItem of DepartmentArray">
+        <td>{{ DepartmentItem.DEPARTMENT_ID }}</td>
+        <td>{{ DepartmentItem.DEPARTMENT_NAME }}</td>
+        <td>{{ DepartmentItem.DEPARTMENT_NAME }}</td>
+        <td>{{ DepartmentItem.DEPARTMENT_NAME }}</td>
 
-              <button
-                type="button"
-                class="btn btn-update"
-                (click)="setUpdate(DepartmentItem)"
-              >
-                Update
-              </button>
-              <button
-                type="button"
-                class="btn btn-delete"
-                (click)="deleteDepartment(DepartmentItem)"
-              >
-                Delete
-              </button>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </form>
+        <button
+          type="button"
+          class="btn btn-update"
+          (click)="setUpdate(DepartmentItem)"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-delete"
+          (click)="deleteDepartment(DepartmentItem)"
+        >
+          Delete
+        </button>
+      </tr>
+    </tbody>
+  </table>
 </div>

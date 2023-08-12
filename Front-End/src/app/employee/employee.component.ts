@@ -110,6 +110,12 @@ createEmployee()
    this.PHONE_NUMBER = data.PHONE_NUMBER;
    this.SALARY = data.SALARY;
    this.EMPLOYEE_ID = data.EMPLOYEE_ID;
+   this.FIRST_NAME = data.FIRST_NAME;
+   this.LAST_NAME = data.LAST_NAME;
+  this.JOB_ID = data.JOB_ID;
+  this.MANAGER_ID = data.MANAGER_ID;
+  this.DEPARTMENT_ID = data.DEPARTMENT_ID;
+  this.COMMISSION_PCT = data.COMMISSION_PCT;
   }
 
   //Update a record

@@ -1,6 +1,6 @@
 <!-- app/employee/employee.component.html -->
 
-<div class="container mt-4">
+<div class="container employee-form">
   <h1>Employee Registration</h1>
   <div class="flex-container">
     <!-- Employee Form -->
@@ -22,6 +22,7 @@
                 required
                 #firstName="ngModel"
                 (focus)="firstNameTouched = true"
+                [readonly]="true"
               />
               <div
                 *ngIf="firstNameTouched && firstName.errors?.['required']"
@@ -43,6 +44,7 @@
                 required
                 #lastName="ngModel"
                 (focus)="lastNameTouched = true"
+                [readonly]="true"
               />
               <div
                 *ngIf="lastNameTouched && lastName.errors?.['required']"
@@ -101,6 +103,7 @@
                 required
                 #job="ngModel"
                 (focus)="jobTouched = true"
+                [disabled]="true"
               >
                 <option *ngFor="let job of JobArray" [value]="job.JOB_ID">
                   {{ job.JOB_ID }}
@@ -137,6 +140,7 @@
                 required
                 #manager="ngModel"
                 (focus)="managerTouched = true"
+                [disabled]="true"
               >
                 <option
                   *ngFor="let manager of EmployeeArray"
@@ -162,6 +166,7 @@
                 [ngModelOptions]="{ standalone: true }"
                 class="form-control department"
                 id="DEPARTMENT_ID"
+                [disabled]="true"
               >
                 <option
                   *ngFor="let department of DepartmentArray"
@@ -189,105 +194,95 @@
         <br />
 
         <!-- save buttom -->
-        <button type="submit" class="btn btn-primary save" (click)="save()">
+        <button type="submit" class="btn btn-save" (click)="save()">
           Save
         </button>
         <!-- cancel buttom -->
-        <button
-          type="reset"
-          class="btn btn-primary resetForm"
-          (click)="resetForm()"
-        >
+        <button type="reset" class="btn btn-cancel" (click)="resetForm()">
           Cancel
         </button>
       </form>
     </div>
-    <br />
-    <br />
-
-    <!-- Search Area -->
-    <div class="form-group">
-      <label>Search</label>
-      <input
-        type="text"
-        [(ngModel)]="SearchInput"
-        [ngModelOptions]="{ standalone: true }"
-        class="form-control input-search"
-        id="SearchInput"
-        placeholder="Search by employee_id, first_name, last_name, or email"
-      />
-    </div>
-    <button
-      type="button"
-      class="btn btn-primary searchButton"
-      (click)="searchEmployee()"
-    >
-      Search
-    </button>
-    <button
-      type="button"
-      class="btn btn-secondary resetSearch"
-      (click)="getAllEmployee()"
-    >
-      Cancel
-    </button>
   </div>
 </div>
+
+<br />
+<br />
+
+<!-- Search Area -->
+<div class="container search">
+  <div class="form-group-search">
+    <label></label>
+    <input
+      type="text"
+      [(ngModel)]="SearchInput"
+      [ngModelOptions]="{ standalone: true }"
+      class="form-control input-search"
+      id="SearchInput"
+      placeholder="Search by employee_id, first_name, last_name, or email"
+    />
+  </div>
+  <button type="button" class="btn btn-searchButton" (click)="searchEmployee()">
+    Search
+  </button>
+  <button type="button" class="btn btn-resetSearch" (click)="getAllEmployee()">
+    Cancel
+  </button>
+</div>
+
 <br />
 <br />
 <br />
 <!-- ----------------------------Employee Dashboard------------------------------------- -->
 
-<div class="table table-hover">
-  <div class="Employee dashboard">
-    <h1>Employee Dashboard</h1>
-    <table class="table-employees">
-      <thead>
-        <h1 *ngIf="!isResultLoaded">Loading.......</h1>
-        <tr>
-          <th scope="col">EMPLOYEE_ID</th>
-          <th scope="col">FIRST_NAME</th>
-          <th scope="col">LAST_NAME</th>
-          <th scope="col">EMAIL</th>
-          <th scope="col">PHONE_NUMBER</th>
-          <th scope="col">HIRE_DATE</th>
-          <th scope="col">JOB_ID</th>
-          <th scope="col">SALARY</th>
-          <th scope="col">COMMISSION_PCT</th>
-          <th scope="col">MANAGER_ID</th>
-          <th scope="col">DEPARTMENT_ID</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let EmployeeItem of EmployeeArray">
-          <td>{{ EmployeeItem.EMPLOYEE_ID }}</td>
-          <td>{{ EmployeeItem.FIRST_NAME }}</td>
-          <td>{{ EmployeeItem.LAST_NAME }}</td>
-          <td>{{ EmployeeItem.EMAIL }}</td>
-          <td>{{ EmployeeItem.PHONE_NUMBER }}</td>
-          <td>{{ EmployeeItem.HIRE_DATE | date : "yyyy-MM-dd" }}</td>
-          <td>{{ EmployeeItem.JOB_ID }}</td>
-          <td>{{ EmployeeItem.SALARY }}</td>
-          <td>{{ EmployeeItem.COMMISION_PCT }}</td>
-          <td>{{ EmployeeItem.MANAGER_ID }}</td>
-          <td>{{ EmployeeItem.DEPARTMENT_ID }}</td>
+<div class="table-container">
+  <h1>Employee Dashboard</h1>
+  <table class="table-employees">
+    <thead>
+      <h1 *ngIf="!isResultLoaded">Loading.......</h1>
+      <tr>
+        <th scope="col">EMPLOYEE_ID</th>
+        <th scope="col">FIRST_NAME</th>
+        <th scope="col">LAST_NAME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">PHONE_NUMBER</th>
+        <th scope="col">HIRE_DATE</th>
+        <th scope="col">JOB_ID</th>
+        <th scope="col">SALARY</th>
+        <th scope="col">COMMISSION_PCT</th>
+        <th scope="col">MANAGER_ID</th>
+        <th scope="col">DEPARTMENT_ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let EmployeeItem of EmployeeArray">
+        <td>{{ EmployeeItem.EMPLOYEE_ID }}</td>
+        <td>{{ EmployeeItem.FIRST_NAME }}</td>
+        <td>{{ EmployeeItem.LAST_NAME }}</td>
+        <td>{{ EmployeeItem.EMAIL }}</td>
+        <td>{{ EmployeeItem.PHONE_NUMBER }}</td>
+        <td>{{ EmployeeItem.HIRE_DATE | date : "yyyy-MM-dd" }}</td>
+        <td>{{ EmployeeItem.JOB_ID }}</td>
+        <td>{{ EmployeeItem.SALARY }}</td>
+        <td>{{ EmployeeItem.COMMISION_PCT }}</td>
+        <td>{{ EmployeeItem.MANAGER_ID }}</td>
+        <td>{{ EmployeeItem.DEPARTMENT_ID }}</td>
 
-          <button
-            type="button"
-            class="btn btn-update"
-            (click)="setUpdate(EmployeeItem)"
-          >
-            Update
-          </button>
-          <button
-            type="button"
-            class="btn btn-delete"
-            (click)="deleteEmployee(EmployeeItem)"
-          >
-            Delete
-          </button>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        <button
+          type="button"
+          class="btn btn-update"
+          (click)="setUpdate(EmployeeItem)"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-delete"
+          (click)="deleteEmployee(EmployeeItem)"
+        >
+          Delete
+        </button>
+      </tr>
+    </tbody>
+  </table>
 </div>

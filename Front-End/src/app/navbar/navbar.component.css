@@ -34,3 +34,21 @@
     font-size: 1.6em; /* Increase size for the active link */
     color: #4bc5ded1;
 }
+
+.nav-item-logout .btn-logout {
+    /* Your styles go here */
+
+    background-color: #111112;  /* Red background for logout */
+    color: rgb(163, 160, 160);               /* White text color */
+    border-radius: 4px;         /* Slight rounding of corners */
+    border: none;               /* Remove border */
+    padding: 8px 12px;          /* Some padding for better appearance */
+    cursor: pointer;            /* Cursor to pointer when hovering */
+    transition: background-color 0.3s;  /* Smooth transition effect */
+}
+
+.nav-item-logout .btn-logout:hover {
+    background-color: #359eae;  /* Darker shade of red for hover effect */
+    color: #ffffff;
+}
+

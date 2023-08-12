@@ -1,154 +1,150 @@
 <!-- app/jobs/jobs.component.html -->
 
-<!-- Job Form -->
-<div class="container mt-4">
+<!-- Job Registration Form Container -->
+<div class="container job-form">
   <h1>Job Registration</h1>
-  <form>
-    <div class="form-group job">
-      <label>Job title</label>
-      <input
-        type="text"
-        [(ngModel)]="JOB_TITLE"
-        [ngModelOptions]="{ standalone: true }"
-        class="form-control jobTitle"
-        id="JOB_TITLE"
-        placeholder="Enter Job title"
-        required
-        #jobTitle="ngModel"
-        (focus)="jobTitleTouched = true"
-      />
-      <div
-        *ngIf="jobTitleTouched && jobTitle.errors?.['required']"
-        class="error-message"
-      >
-        Job title is required.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Max salary</label>
-      <input
-        type="text"
-        [(ngModel)]="MAX_SALARY"
-        [ngModelOptions]="{ standalone: true }"
-        class="form-control maxSalary"
-        id="MAX_SALARY"
-        placeholder="Enter max salary"
-        required
-        #maxSalary="ngModel"
-        (focus)="maxSalaryTouched = true"
-      />
-      <div
-        *ngIf="maxSalaryTouched && maxSalary.errors?.['required']"
-        class="error-message"
-      >
-        Max salary is required.
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>Min salary</label>
-      <input
-        type="text"
-        [(ngModel)]="MIN_SALARY"
-        [ngModelOptions]="{ standalone: true }"
-        class="form-control minSalary"
-        id="MIN_SALARY"
-        placeholder="Enter min salary"
-        required
-        #minSalary="ngModel"
-        (focus)="minSalaryTouched = true"
-      />
-      <div
-        *ngIf="minSalaryTouched && minSalary.errors?.['required']"
-        class="error-message"
-      >
-        Min salary is required.
-      </div>
-    </div>
-
-    <!-- save button -->
-    <button type="submit" class="btn btn-primary" (click)="save()">Save</button>
-    <!-- cancel button -->
-    <button
-      type="reset"
-      class="btn btn-primary resetform"
-      (click)="resetForm()"
-    >
-      Cancel
-    </button>
-    <br />
-    <br />
-
-    <!-- Search Area -->
-    <div class="form-group">
-      <label></label>
-      <input
-        type="text"
-        [(ngModel)]="SearchInput"
-        [ngModelOptions]="{ standalone: true }"
-        class="form-control input-search"
-        id="SearchInput"
-        placeholder="Search by job_id, max_salary or min_salary"
-      />
-    </div>
-    <button
-      type="button"
-      class="btn btn-primary searchJob"
-      (click)="searchJob()"
-    >
-      Search
-    </button>
-    <button
-      type="button"
-      class="btn btn-secondary getAllJob"
-      (click)="getAllJob()"
-    >
-      Cancel
-    </button>
-    <br />
-    <br />
-    <br />
-    <!-- ----------------------------Jobs Dashboard------------------------------------- -->
-
-    <div class="container jobs">
-      <div class="Jobs dashboard">
-        <h1>Job Dashboard</h1>
-        <table class="table jobs">
-          <thead>
-            <h1 *ngIf="!isResultLoaded">Loading.......</h1>
-            <tr>
-              <th scope="col">JOB_ID</th>
-              <th scope="col">JOB_TITLE</th>
-              <th scope="col">MAX_SALARY</th>
-              <th scope="col">MIN_SALARY</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let JobItem of JobArray">
-              <td>{{ JobItem.JOB_ID }}</td>
-              <td>{{ JobItem.JOB_TITLE }}</td>
-              <td>{{ JobItem.MAX_SALARY }}</td>
-              <td>{{ JobItem.MIN_SALARY }}</td>
-
-              <button
-                type="button"
-                class="btn btn-update"
-                (click)="setUpdate(JobItem)"
+  <div class="flex-container">
+    <div class="Registration-Form flex-col">
+      <form>
+        <div class="flex-row">
+          <!-- First column -->
+          <div class="flex-col">
+            <div class="form-group">
+              <label>Job title</label>
+              <input
+                type="text"
+                [(ngModel)]="JOB_TITLE"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control jobTitle"
+                id="JOB_TITLE"
+                placeholder="Enter Job title"
+                required
+                #jobTitle="ngModel"
+                (focus)="jobTitleTouched = true"
+                [readonly]="true"
+              />
+              <div
+                *ngIf="jobTitleTouched && jobTitle.errors?.['required']"
+                class="error-message"
               >
-                Update
-              </button>
-              <button
-                type="button"
-                class="btn btn-delete"
-                (click)="deleteJob(JobItem)"
+                Job title is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Max salary</label>
+              <input
+                type="text"
+                [(ngModel)]="MAX_SALARY"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control maxSalary"
+                id="MAX_SALARY"
+                placeholder="Enter max salary"
+                required
+                #maxSalary="ngModel"
+                (focus)="maxSalaryTouched = true"
+              />
+              <div
+                *ngIf="maxSalaryTouched && maxSalary.errors?.['required']"
+                class="error-message"
               >
-                Delete
-              </button>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                Max salary is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Min salary</label>
+              <input
+                type="text"
+                [(ngModel)]="MIN_SALARY"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control minSalary"
+                id="MIN_SALARY"
+                placeholder="Enter min salary"
+                required
+                #minSalary="ngModel"
+                (focus)="minSalaryTouched = true"
+              />
+              <div
+                *ngIf="minSalaryTouched && minSalary.errors?.['required']"
+                class="error-message"
+              >
+                Min salary is required.
+              </div>
+            </div>
+            <!-- Save and Cancel buttons -->
+            <button type="submit" class="btn btn-save" (click)="save()">
+              Save
+            </button>
+            <button type="reset" class="btn btn-cancel" (click)="resetForm()">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
-  </form>
+  </div>
+</div>
+<br /><br />
+
+<!-- Search Area Container -->
+<div class="container search">
+  <div class="form-group-search">
+    <input
+      type="text"
+      [(ngModel)]="SearchInput"
+      [ngModelOptions]="{ standalone: true }"
+      class="form-control input-search"
+      id="SearchInput"
+      placeholder="Search by job_id, max_salary or min_salary"
+    />
+  </div>
+  <button type="button" class="btn btn-searchButton" (click)="searchJob()">
+    Search
+  </button>
+  <button type="button" class="btn btn-resetSearch" (click)="getAllJob()">
+    Cancel
+  </button>
+</div>
+<br />
+<br />
+
+<!-- ----------------------------Jobs Dashboard------------------------------------- -->
+
+<div class="table-container">
+  <h1>Job Dashboard</h1>
+  <table class="table-jobs">
+    <thead>
+      <h2 *ngIf="!isResultLoaded">Loading.......</h2>
+      <tr>
+        <th scope="col">JOB_ID</th>
+        <th scope="col">JOB_TITLE</th>
+        <th scope="col">MAX_SALARY</th>
+        <th scope="col">MIN_SALARY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let JobItem of JobArray">
+        <td>{{ JobItem.JOB_ID }}</td>
+        <td>{{ JobItem.JOB_TITLE }}</td>
+        <td>{{ JobItem.MAX_SALARY }}</td>
+        <td>{{ JobItem.MIN_SALARY }}</td>
+
+        <button
+          type="button"
+          class="btn btn-update"
+          (click)="setUpdate(JobItem)"
+        >
+          Update
+        </button>
+        <button
+          type="button"
+          class="btn btn-delete"
+          (click)="deleteJob(JobItem)"
+        >
+          Delete
+        </button>
+      </tr>
+    </tbody>
+  </table>
 </div>

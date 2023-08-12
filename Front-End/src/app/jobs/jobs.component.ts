@@ -75,6 +75,7 @@ createJob()
    this.MAX_SALARY = data.MAX_SALARY;
    this.MIN_SALARY = data.MIN_SALARY;
    this.JOB_ID = data.JOB_ID;
+   this.JOB_TITLE = data.JOB_TITLE;
   }
 
   //Update a record

@@ -1,0 +1,226 @@
+.container.department-form {
+    font-family:'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell;
+    background-color: #fffefe;
+    padding: 20px 40px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+.container.department-form h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.Registration-Form {
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: auto;
+}
+
+.flex-row {
+    display: flex;
+    justify-content:space-around;
+}
+
+.flex-col {
+    width:49%; 
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #555;
+    margin: auto;
+}
+
+.form-group select.form-control {
+    height: 50px;
+    font-size: 16px;
+}
+
+
+.form-control {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border 0.2s;
+    margin: auto;
+    height: 30%;
+}
+
+.form-control:focus {
+    border-color: #007BFF; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.error-message {
+    color: rgb(191, 17, 17);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s; 
+}
+
+.btn-save {
+    background-color: #238257;
+    color: #fff;
+}
+
+.btn-save:hover {
+    background-color: #10664c;
+    transform: scale(1.05); 
+}
+
+.btn-cancel {
+    background-color: #cba034;
+    color: #fff;
+}
+
+.btn-cancel:hover {
+    background-color: #76671a;
+    transform: scale(1.05); /* slight grow effect */
+}
+
+/* Specific styles for btn-searchButton and btn-resetSearch */
+.container.search {
+    font-family: Arial, sans-serif; 
+    display: flex;      
+    flex-direction: column; 
+    align-items: center;   
+    justify-content: center; 
+    width: 100%;            
+    box-sizing: border-box; 
+    padding: 1em;          
+}
+
+.form-group-search {
+    display: flex;        
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;     
+}
+
+.form-control.input-search {
+    font-size: 1em;        
+    padding: 0.5em;      
+    border-radius: 5px;   
+    width: 100%;          
+    margin-bottom: 0.5em; 
+}
+
+.btn-searchButton {
+    background-color: #238257;  
+    color: white;
+    width: 30%;
+    
+}
+
+.btn-searchButton:hover {
+    background-color: #10664c; 
+    transform: scale(1.15);
+}
+
+.btn-resetSearch {
+    background-color:#cba034; 
+    color: white;
+    width: 30%;
+    margin: auto;
+}
+
+.btn-resetSearch:hover {
+    background-color: #76671a; 
+    transform: scale(1.15);
+}
+
+
+.form-group .btn {
+    margin-top: 10px;
+}
+
+.input-search {
+    margin-bottom: 10px;
+    width: 50%;
+}
+
+ /*      Dashboard       */
+
+ .table-container {
+    font-family: Arial, sans-serif; /* A universally nice font */
+    width: 100%;
+    padding: 1em;
+    border: none; 
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.table-container h1 {
+    text-align: center; 
+    font-size: 1.7em;  
+    margin-bottom: 1em; 
+    font-weight: bold; 
+}
+
+.table-departments {
+    width: 100%;        
+    border-collapse: collapse;  
+}
+
+.table-departments thead h1 {
+    text-align: center;
+    font-size: 2em; 
+    margin: 1em 0;  
+    font-weight: bold; 
+}
+
+.table-departments th, 
+.table-departments td {
+    text-align: center; 
+    padding: 0.5em 0.75em; 
+    border: 1px solid #ddd; 
+    box-sizing: border-box; 
+}
+
+.table-departments tr:nth-child(even) {
+    background-color: #f2f2f2; 
+}
+
+.btn {
+    margin: 0.5em;      
+    padding: 0.5em 1em; 
+    border: none;       
+    cursor: pointer;    
+}
+
+.btn-update {
+    background-color: #238257;  
+    color: white;              
+}
+
+.btn-delete {
+    background-color: #bb2116; 
+    color: white;  
+} 

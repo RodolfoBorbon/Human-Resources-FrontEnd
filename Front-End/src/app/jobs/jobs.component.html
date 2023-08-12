@@ -21,7 +21,6 @@
                 required
                 #jobTitle="ngModel"
                 (focus)="jobTitleTouched = true"
-                [readonly]="true"
               />
               <div
                 *ngIf="jobTitleTouched && jobTitle.errors?.['required']"

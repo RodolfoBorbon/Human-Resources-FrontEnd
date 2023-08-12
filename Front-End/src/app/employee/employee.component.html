@@ -22,7 +22,6 @@
                 required
                 #firstName="ngModel"
                 (focus)="firstNameTouched = true"
-                [readonly]="true"
               />
               <div
                 *ngIf="firstNameTouched && firstName.errors?.['required']"
@@ -44,7 +43,6 @@
                 required
                 #lastName="ngModel"
                 (focus)="lastNameTouched = true"
-                [readonly]="true"
               />
               <div
                 *ngIf="lastNameTouched && lastName.errors?.['required']"
@@ -103,7 +101,6 @@
                 required
                 #job="ngModel"
                 (focus)="jobTouched = true"
-                [disabled]="true"
               >
                 <option *ngFor="let job of JobArray" [value]="job.JOB_ID">
                   {{ job.JOB_ID }}
@@ -140,7 +137,6 @@
                 required
                 #manager="ngModel"
                 (focus)="managerTouched = true"
-                [disabled]="true"
               >
                 <option
                   *ngFor="let manager of EmployeeArray"
@@ -166,7 +162,6 @@
                 [ngModelOptions]="{ standalone: true }"
                 class="form-control department"
                 id="DEPARTMENT_ID"
-                [disabled]="true"
               >
                 <option
                   *ngFor="let department of DepartmentArray"

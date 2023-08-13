@@ -19,6 +19,8 @@ export class JobsComponent {
   MAX_SALARY = "";
   MIN_SALARY = "";
 
+  isUpdating: boolean = false;
+
   jobTitleTouched: boolean = false;
   maxSalaryTouched: boolean = false; 
   minSalaryTouched: boolean = false;
@@ -50,6 +52,7 @@ resetForm() {
   this.JOB_TITLE = '';
   this.MAX_SALARY = '';
   this.MIN_SALARY = '';
+  this.isUpdating = false;
 }
 
 //Create a record
@@ -76,6 +79,7 @@ createJob()
    this.MIN_SALARY = data.MIN_SALARY;
    this.JOB_ID = data.JOB_ID;
    this.JOB_TITLE = data.JOB_TITLE;
+   this.isUpdating = true;
   }
 
   //Update a record
@@ -100,6 +104,7 @@ updateEmployee()
   {
     if(this.JOB_ID == '')
     {
+      this.isUpdating = false;
         this.createJob();
         this.jobTitleTouched = false;
         this.maxSalaryTouched = false;
@@ -107,6 +112,7 @@ updateEmployee()
     }
       else
       {
+        this.isUpdating = true;
        this.updateEmployee();
           this.jobTitleTouched = false;
           this.maxSalaryTouched = false;

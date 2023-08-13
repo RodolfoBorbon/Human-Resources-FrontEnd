@@ -1,15 +1,27 @@
 <!-- app/employee/employee.component.html -->
 
 <div class="container employee-form">
-  <h1>Employee Registration</h1>
+  <h1 *ngIf="!isUpdating">Register Employee</h1>
+  <h1 *ngIf="isUpdating">Update Employee</h1>
+  <br />
   <div class="flex-container">
     <!-- Employee Form -->
     <div class="Registration-Form flex-col">
-      <form>
+      <form (submit)="$event.preventDefault()">
         <!-- First row with two fields side by side -->
         <div class="flex-row">
           <!-- First column -->
           <div class="flex-col">
+            <!-- Employee_id field only show up when the user update record -->
+            <div class="form-group" *ngIf="isUpdating">
+              <label>Employee ID</label>
+              <input
+                type="text"
+                [value]="EMPLOYEE_ID"
+                class="form-control"
+                readonly
+              />
+            </div>
             <div class="form-group">
               <label>First Name</label>
               <input
@@ -22,6 +34,7 @@
                 required
                 #firstName="ngModel"
                 (focus)="firstNameTouched = true"
+                [readonly]="isUpdating"
               />
               <div
                 *ngIf="firstNameTouched && firstName.errors?.['required']"
@@ -43,6 +56,7 @@
                 required
                 #lastName="ngModel"
                 (focus)="lastNameTouched = true"
+                [readonly]="isUpdating"
               />
               <div
                 *ngIf="lastNameTouched && lastName.errors?.['required']"
@@ -101,6 +115,7 @@
                 required
                 #job="ngModel"
                 (focus)="jobTouched = true"
+                [disabled]="isUpdating"
               >
                 <option value="">Select a job</option>
                 <option *ngFor="let job of JobArray" [value]="job.JOB_ID">
@@ -138,6 +153,7 @@
                 required
                 #manager="ngModel"
                 (focus)="managerTouched = true"
+                [disabled]="isUpdating"
               >
                 <option value="">Select a manager</option>
                 <option
@@ -164,6 +180,7 @@
                 [ngModelOptions]="{ standalone: true }"
                 class="form-control department"
                 id="DEPARTMENT_ID"
+                [disabled]="isUpdating"
               >
                 <option value="">Select a department</option>
                 <option

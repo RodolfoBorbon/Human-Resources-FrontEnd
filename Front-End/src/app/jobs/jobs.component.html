@@ -2,13 +2,25 @@
 
 <!-- Job Registration Form Container -->
 <div class="container job-form">
-  <h1>Job Registration</h1>
+  <h1 *ngIf="!isUpdating">Register Job Position</h1>
+  <h1 *ngIf="isUpdating">Update Job Position</h1>
+  <br />
   <div class="flex-container">
     <div class="Registration-Form flex-col">
-      <form>
+      <form (submit)="$event.preventDefault()">
         <div class="flex-row">
           <!-- First column -->
           <div class="flex-col">
+            <!-- Employee_id field only show up when the user update record -->
+            <div class="form-group" *ngIf="isUpdating">
+              <label>Job ID</label>
+              <input
+                type="text"
+                [value]="JOB_ID"
+                class="form-control"
+                readonly
+              />
+            </div>
             <div class="form-group">
               <label>Job title</label>
               <input

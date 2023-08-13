@@ -31,6 +31,8 @@ export class EmployeeComponent {
   firstNameTouched: boolean = false;
   managerTouched: boolean = false;
 
+  isUpdating: boolean = false;
+
   SearchInput: string = ''; //searchInput property
 
   JobArray: any[] = []; 
@@ -69,6 +71,7 @@ resetForm() {
   this.DEPARTMENT_ID = '';
   this.EMPLOYEE_ID = '';
   this.COMMISSION_PCT = '';
+  this.isUpdating = false;
 }
 
 //Create a record
@@ -106,13 +109,17 @@ createEmployee()
   //Update a record
   setUpdate(data: any) 
   {
+    this.FIRST_NAME = data.FIRST_NAME;
+    this.LAST_NAME = data.LAST_NAME;
    this.EMAIL = data.EMAIL;
    this.PHONE_NUMBER = data.PHONE_NUMBER;
+   this.JOB_ID = data.JOB_ID;
    this.SALARY = data.SALARY;
+   this.MANAGER_ID = data.MANAGER_ID
+   this.DEPARTMENT_ID = data.DEPARTMENT_ID;
+   this.COMMISSION_PCT = data.COMMISSION_PCT;
    this.EMPLOYEE_ID = data.EMPLOYEE_ID;
-
-     // Log the values you just set
-     console.log('Set Update:', this.EMAIL, this.PHONE_NUMBER, this.SALARY, this.EMPLOYEE_ID);
+   this.isUpdating = true;
   }
 
   //Update a record
@@ -131,10 +138,6 @@ updateEmployee()
     "COMMISSION_PCT": this.COMMISSION_PCT // Here
   };
 
-  // Log the entire update payload
-  console.log('Updating Employee with Data:', bodyData);
-
-  
   this.http.put("http://localhost:8080/employee/update"+ "/"+ this.EMPLOYEE_ID,bodyData).subscribe((resultData: any)=>
   {
       console.log(resultData);
@@ -158,7 +161,8 @@ updateEmployee()
   {
     if(this.EMPLOYEE_ID == '')
     {
-        this.createEmployee();
+          this.isUpdating = false;
+          this.createEmployee();
           this.jobTouched = false;
           this.lastNameTouched = false;
           this.firstNameTouched = false;
@@ -166,7 +170,8 @@ updateEmployee()
     }
       else
       {
-       this.updateEmployee();
+          this.isUpdating = true;
+          this.updateEmployee();
           this.jobTouched = false;
           this.lastNameTouched = false;
           this.firstNameTouched = false;

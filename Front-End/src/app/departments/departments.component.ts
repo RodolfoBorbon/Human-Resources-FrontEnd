@@ -28,6 +28,8 @@ export class DepartmentsComponent {
   managerIdTouched: boolean = false; 
   locationIdTouched: boolean = false;
 
+  isUpdating: boolean = false;
+
   SearchInput: string = ''; //searchInput property
 
   constructor(private http: HttpClient ) 
@@ -57,6 +59,7 @@ resetForm() {
   this.DEPARTMENT_NAME = '';
   this.MANAGER_ID = '';   // reset the Manager dropdown
   this.LOCATION_ID = '';  // reset the Location dropdown
+  this.isUpdating = false;
 }
 
 //Create a record
@@ -79,9 +82,11 @@ createDepartment()
   //Update a record
   setUpdate(data: any) 
   {
+   this.DEPARTMENT_ID = data.DEPARTMENT_ID
    this.DEPARTMENT_NAME = data.DEPARTMENT_NAME;
    this.MANAGER_ID = data.MANAGER_ID;
    this.LOCATION_ID = data.LOCATION_ID;
+   this.isUpdating = true;
   }
 
   //Update a record
@@ -106,6 +111,7 @@ updateDepartment()
   {
     if(this.DEPARTMENT_ID == '')
     {
+        this.isUpdating = false;
         this.createDepartment();
         this.departmentNameTouched = false;
         this.managerIdTouched = false;
@@ -113,7 +119,8 @@ updateDepartment()
     }
       else
       {
-       this.updateDepartment();
+        this.isUpdating = true;
+        this.updateDepartment();
         this.departmentNameTouched = false;
         this.managerIdTouched = false;
         this.locationIdTouched = false;

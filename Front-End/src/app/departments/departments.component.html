@@ -2,13 +2,25 @@
 
 <!-- Department Form -->
 <div class="container department-form">
-  <h1>Department Registration</h1>
+  <h1 *ngIf="!isUpdating">Register Department</h1>
+  <h1 *ngIf="isUpdating">Update Department</h1>
+  <br />
   <div class="flex-container">
     <div class="Registration-Form flex-col">
-      <form>
+      <form (submit)="$event.preventDefault()">
         <div class="flex-row">
           <!-- First column -->
           <div class="flex-col">
+            <!-- Department_id field only show up when the user update record -->
+            <div class="form-group" *ngIf="isUpdating">
+              <label>Department ID</label>
+              <input
+                type="text"
+                [value]="DEPARTMENT_ID"
+                class="form-control"
+                readonly
+              />
+            </div>
             <div class="form-group">
               <label>Department name</label>
               <input

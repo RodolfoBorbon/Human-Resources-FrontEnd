@@ -11,13 +11,10 @@ exports.addDepartment = async (req, res, next) => {
         req.body.LOCATION_ID, 
       ];
   
-      let sql = `BEGIN New_department_sp(:DEPARTMENT_NAME, 
-                      :MANAGER_ID, 
-                      :LOCATION_ID); 
-                 END;`;
+      let sql = `BEGIN New_department_sp(:1, :2, :3); END;`;
     
                  try {
-                    const result = await dbModule.connection().execute(sql, { EMPLOYEE_ID: req.params.EMPLOYEE_ID });
+                    const result = await dbModule.connection().execute(sql, details);
                     
                     // Check if the deletion was successful
                     if (result.rowsAffected && result.rowsAffected > 0) {

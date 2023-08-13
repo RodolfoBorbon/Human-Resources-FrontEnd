@@ -5,7 +5,7 @@
 }
 
 .container-fluid {
-    background-color: #111112;
+    background-color: #18181b;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,24 +21,26 @@
 }
 
 .nav-link {
-    color: #e6e0e0; /* This sets the default link color */
+    color: #c3bbbb; /* This sets the default link color */
 }
 
 .nav-link:hover {
-    color: #4bc5ded1; /* Lighten the color slightly when hovered */
+    color: #c8d64fd1; /* Lighten the color slightly when hovered */
+    font-weight: bold; 
+    font-size: 1.3em; /* Increase size for the active link */
 }
 
 /* Active Page Styles */
 .nav-link.active {
     font-weight: bold; 
-    font-size: 1.6em; /* Increase size for the active link */
-    color: #4bc5ded1;
+    font-size: 1.3em; /* Increase size for the active link */
+    color: #c2d048d1;
 }
 
 .nav-item-logout .btn-logout {
     /* Your styles go here */
 
-    background-color: #111112;  /* Red background for logout */
+    background-color:  #18181b; /* Red background for logout */
     color: rgb(163, 160, 160);               /* White text color */
     border-radius: 4px;         /* Slight rounding of corners */
     border: none;               /* Remove border */
@@ -48,7 +50,7 @@
 }
 
 .nav-item-logout .btn-logout:hover {
-    background-color: #359eae;  /* Darker shade of red for hover effect */
-    color: #ffffff;
+    background-color:  #b9c54cd1;  /* Darker shade of red for hover effect */
+    color: #040404;
 }
 

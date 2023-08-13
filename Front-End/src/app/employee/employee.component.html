@@ -102,6 +102,7 @@
                 #job="ngModel"
                 (focus)="jobTouched = true"
               >
+                <option value="">Select a job</option>
                 <option *ngFor="let job of JobArray" [value]="job.JOB_ID">
                   {{ job.JOB_ID }}
                   {{ job.JOB_TITLE }}
@@ -138,6 +139,7 @@
                 #manager="ngModel"
                 (focus)="managerTouched = true"
               >
+                <option value="">Select a manager</option>
                 <option
                   *ngFor="let manager of EmployeeArray"
                   [value]="manager.EMPLOYEE_ID"
@@ -163,6 +165,7 @@
                 class="form-control department"
                 id="DEPARTMENT_ID"
               >
+                <option value="">Select a department</option>
                 <option
                   *ngFor="let department of DepartmentArray"
                   [value]="department.DEPARTMENT_ID"

@@ -2,6 +2,7 @@
 
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -15,9 +16,10 @@ export class DepartmentsComponent {
   isResultLoaded = false;
   isUpdateFormActive = false;
   DEPARTMENT_ID = "";
-  DEPARTMENT_NAME: string ="";
-  MANAGER_ID = "";
-  LOCATION_ID = "";
+  DEPARTMENT_NAME: string = "";
+  MANAGER_ID: string = '';
+  LOCATION_ID: string = '';
+
 
   EmployeeArray : any[] = [];
   LocationArray : any[] = [];
@@ -53,8 +55,8 @@ export class DepartmentsComponent {
 resetForm() {
   this.DEPARTMENT_ID = '';
   this.DEPARTMENT_NAME = '';
-  this.MANAGER_ID = '';
-  this.LOCATION_ID = '';
+  this.MANAGER_ID = '';   // reset the Manager dropdown
+  this.LOCATION_ID = '';  // reset the Location dropdown
 }
 
 //Create a record

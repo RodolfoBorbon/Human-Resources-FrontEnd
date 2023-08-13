@@ -29,7 +29,6 @@
                 Department name is required.
               </div>
             </div>
-
             <div class="form-group">
               <label>Manager</label>
               <select
@@ -38,12 +37,13 @@
                 class="form-control managerId"
                 id="MANAGER_ID"
               >
+                <option value="">Select a manager</option>
+                <!-- Default Option -->
                 <option
                   *ngFor="let manager of EmployeeArray"
                   [value]="manager.EMPLOYEE_ID"
                 >
-                  {{ manager.EMPLOYEE_ID }}
-                  {{ manager.LAST_NAME }}
+                  {{ manager.EMPLOYEE_ID }} {{ manager.LAST_NAME }}
                   {{ manager.FIRST_NAME }}
                 </option>
               </select>
@@ -60,6 +60,7 @@
                 #locationId="ngModel"
                 (focus)="locationIdTouched = true"
               >
+                <option value="">Select a location</option>
                 <option
                   *ngFor="let location of LocationArray"
                   [value]="location.LOCATION_ID"
@@ -79,7 +80,7 @@
               </div>
             </div>
 
-            <!-- save button -->
+            <!-- Save and Cancel buttons -->
             <button type="submit" class="btn btn-save" (click)="save()">
               Save
             </button>

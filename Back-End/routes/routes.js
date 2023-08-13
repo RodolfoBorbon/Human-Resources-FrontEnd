@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const userAuthenticationController = require('../controllers/userAuthentication');
-employeeController = require('../controllers/employee')
+const employeeController = require('../controllers/employee')
 const jobController = require('../controllers/job')
 const departmentController = require('../controllers/department')
 

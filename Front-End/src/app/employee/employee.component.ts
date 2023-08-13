@@ -110,6 +110,9 @@ createEmployee()
    this.PHONE_NUMBER = data.PHONE_NUMBER;
    this.SALARY = data.SALARY;
    this.EMPLOYEE_ID = data.EMPLOYEE_ID;
+
+     // Log the values you just set
+     console.log('Set Update:', this.EMAIL, this.PHONE_NUMBER, this.SALARY, this.EMPLOYEE_ID);
   }
 
   //Update a record
@@ -127,6 +130,10 @@ updateEmployee()
     "DEPARTMENT_ID": this.DEPARTMENT_ID,
     "COMMISSION_PCT": this.COMMISSION_PCT // Here
   };
+
+  // Log the entire update payload
+  console.log('Updating Employee with Data:', bodyData);
+
   
   this.http.put("http://localhost:8080/employee/update"+ "/"+ this.EMPLOYEE_ID,bodyData).subscribe((resultData: any)=>
   {
@@ -136,7 +143,8 @@ updateEmployee()
       this.resetForm();
     },
     (error: any) => {
-      console.error(error);
+      console.error('Error:', error);
+      console.error('Error Response Body:', error.error);  // Log the entire error response
       if (error.error && error.error.message) {
           alert(error.error.message);
       } else {

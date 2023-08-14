@@ -2,6 +2,7 @@
 
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class EmployeeComponent {
   //View all the employee 
   getAllEmployee()
   { 
-    this.http.get("http://localhost:8080/employee/")
+    this.http.get(`${environment.backendUrl}/employee/`)
     .subscribe((resultData: any)=>
     {
         this.isResultLoaded = true;
@@ -88,7 +89,7 @@ createEmployee()
     "DEPARTMENT_ID": this.DEPARTMENT_ID,
     "COMMISSION_PCT": this.COMMISSION_PCT
   };
-  this.http.post("http://localhost:8080/employee/create",bodyData).subscribe((resultData: any)=>
+  this.http.post(`${environment.backendUrl}/employee/create`,bodyData).subscribe((resultData: any)=>
   {
       console.log(resultData);
       alert("Employee Registered Successfully")
@@ -138,7 +139,7 @@ updateEmployee()
     "COMMISSION_PCT": this.COMMISSION_PCT // Here
   };
 
-  this.http.put("http://localhost:8080/employee/update"+ "/"+ this.EMPLOYEE_ID,bodyData).subscribe((resultData: any)=>
+  this.http.put(`${environment.backendUrl}/employee/update`+ "/"+ this.EMPLOYEE_ID,bodyData).subscribe((resultData: any)=>
   {
       console.log(resultData);
       alert("Employee record Updated successfully")
@@ -182,7 +183,7 @@ updateEmployee()
   //Delete employee
   deleteEmployee(data: any)
   {
-    this.http.delete("http://localhost:8080/employee/delete"+ "/"+ data.EMPLOYEE_ID).subscribe((resultData: any)=>
+    this.http.delete(`${environment.backendUrl}/employee/delete`+ "/"+ data.EMPLOYEE_ID).subscribe((resultData: any)=>
     {
         console.log(resultData);
         alert("Employee record Deleted")
@@ -194,7 +195,7 @@ updateEmployee()
     //View all Jobs
     getAllJobs()
     { 
-      this.http.get("http://localhost:8080/job/")
+      this.http.get(`${environment.backendUrl}/job/`)
       .subscribe((resultData: any)=>
       {
           this.isResultLoaded = true;
@@ -206,7 +207,7 @@ updateEmployee()
     //View all Departments
     getAllDepartments()
     { 
-      this.http.get("http://localhost:8080/department/")
+      this.http.get(`${environment.backendUrl}/department/`)
       .subscribe((resultData: any)=>
       {
           this.isResultLoaded = true;
@@ -217,7 +218,7 @@ updateEmployee()
 
     // Add a new searchEmployee function
   searchEmployee() {
-    this.http.get("http://localhost:8080/employee/search/" + this.SearchInput)
+    this.http.get(`${environment.backendUrl}/employee/search/` + this.SearchInput)
     .subscribe((resultData: any) => {
       console.log(resultData.data);
       this.EmployeeArray = resultData.data;

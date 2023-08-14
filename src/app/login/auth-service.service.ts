@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 
 
@@ -27,7 +28,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('http://localhost:8080/login', { username, password })
+    return this.http.post<any>(`${environment.backendUrl}/login`, { username, password })
         .pipe(map(user => {
             // login successful if there's a user in the response
             if (user && user.message === 'Logged in successfully.') { 

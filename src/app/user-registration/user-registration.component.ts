@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgForm } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-user-registration',
@@ -21,7 +22,7 @@ constructor(private http: HttpClient, private router: Router, private snackBar: 
 
 registerUser(form: NgForm) {
     console.log(this.newUser);
-    this.http.post('http://localhost:8080/registerUser', this.newUser)
+    this.http.post(`${environment.backendUrl}/registerUser`, this.newUser)
 .subscribe({
     next: (res: any) => {
         form.resetForm(); //reset the form

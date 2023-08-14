@@ -2,7 +2,8 @@
 
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NgForm } from '@angular/forms';
+import { environment } from '../../environments/environment';
+
 
 
 @Component({
@@ -44,7 +45,7 @@ export class DepartmentsComponent {
   //View all the employee 
   getAllDepartment()
   { 
-    this.http.get("http://localhost:8080/department/")
+    this.http.get(`${environment.backendUrl}/department/`)
     .subscribe((resultData: any)=>
     {
         this.isResultLoaded = true;
@@ -70,7 +71,7 @@ createDepartment()
     "MANAGER_ID" : this.MANAGER_ID,
     "LOCATION_ID" : this.LOCATION_ID,
   };
-  this.http.post("http://localhost:8080/department/add",bodyData).subscribe((resultData: any)=>
+  this.http.post(`${environment.backendUrl}/department/add`,bodyData).subscribe((resultData: any)=>
   {
       console.log(resultData);
       alert("Department Registered Successfully")
@@ -98,7 +99,7 @@ updateDepartment()
     "LOCATION_ID" : this.LOCATION_ID,
   };
   
-  this.http.put("http://localhost:8080/department/update"+ "/"+ this.DEPARTMENT_ID,bodyData).subscribe((resultData: any)=>
+  this.http.put(`${environment.backendUrl}/department/update`+ "/"+ this.DEPARTMENT_ID,bodyData).subscribe((resultData: any)=>
   {
       console.log(resultData);
       alert("Department Registered Updateddd")
@@ -132,7 +133,7 @@ updateDepartment()
   {
     const isConfirmed = window.confirm('Are you sure you want to delete this department?');  // Confirm the deletion
     if (isConfirmed) {
-    this.http.delete("http://localhost:8080/department/delete"+ "/"+ data.DEPARTMENT_ID).subscribe({
+    this.http.delete(`${environment.backendUrl}/department/delete`+ "/"+ data.DEPARTMENT_ID).subscribe({
       next: (resultData: any) => {
         console.log(resultData);
         if (resultData.status) {
@@ -155,7 +156,7 @@ updateDepartment()
 
     // Search a department
   searchDepartment() {
-    this.http.get("http://localhost:8080/department/search/" + this.SearchInput)
+    this.http.get(`${environment.backendUrl}/department/search` + this.SearchInput)
     .subscribe((resultData: any) => {
       console.log(resultData.data);
       this.DepartmentArray = resultData.data;
@@ -165,7 +166,7 @@ updateDepartment()
   //View all Departments
   getAllEmployee()
   { 
-    this.http.get("http://localhost:8080/employee/")
+    this.http.get(`${environment.backendUrl}/employee/`)
     .subscribe((resultData: any)=>
     {
         this.isResultLoaded = true;
@@ -177,7 +178,7 @@ updateDepartment()
   //View all locations
   getAllLocation()
   { 
-    this.http.get("http://localhost:8080/location/")
+    this.http.get(`${environment.backendUrl}/location/`)
     .subscribe((resultData: any)=>
     {
         this.isResultLoaded = true;
@@ -186,5 +187,4 @@ updateDepartment()
     });
   }
 }
-
 

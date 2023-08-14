@@ -2,6 +2,7 @@
 
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class JobsComponent {
   //View all the employee 
   getAllJob()
   { 
-    this.http.get("http://localhost:8080/job/")
+    this.http.get(`${environment.backendUrl}/job/`)
     .subscribe((resultData: any)=>
     {
         this.isResultLoaded = true;
@@ -63,7 +64,7 @@ createJob()
     "MAX_SALARY" : this.MAX_SALARY,
     "MIN_SALARY" : this.MIN_SALARY,
   };
-  this.http.post("http://localhost:8080/job/add",bodyData).subscribe((resultData: any)=>
+  this.http.post(`${environment.backendUrl}/job/add`,bodyData).subscribe((resultData: any)=>
   {
       console.log(resultData);
       alert("Job Registered Successfully")
@@ -91,7 +92,7 @@ updateEmployee()
     "MIN_SALARY" : this.MIN_SALARY,
   };
   
-  this.http.put("http://localhost:8080/job/update"+ "/"+ this.JOB_ID,bodyData).subscribe((resultData: any)=>
+  this.http.put(`${environment.backendUrl}/job/update`+ "/"+ this.JOB_ID,bodyData).subscribe((resultData: any)=>
   {
       console.log(resultData);
       alert("Job Registered Updateddd")
@@ -125,7 +126,7 @@ updateEmployee()
   {
     const isConfirmed = window.confirm('Are you sure you want to delete this job?');  // Confirm the deletion
     if (isConfirmed) {
-    this.http.delete("http://localhost:8080/job/delete"+ "/"+ data.JOB_ID).subscribe({
+    this.http.delete(`${environment.backendUrl}/job/delete`+ "/"+ data.JOB_ID).subscribe({
     next: (resultData: any) => {
       console.log(resultData);
       if (resultData.status) {
@@ -148,7 +149,7 @@ console.log('Deletion cancelled by user.');
 
     // Search a job
   searchJob() {
-    this.http.get("http://localhost:8080/job/search/" + this.SearchInput)
+    this.http.get(`${environment.backendUrl}/job/search/` + this.SearchInput)
     .subscribe((resultData: any) => {
       console.log(resultData.data);
       this.JobArray = resultData.data;
